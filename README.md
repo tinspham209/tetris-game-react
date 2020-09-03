@@ -15,8 +15,6 @@
 - React
 - Styled-components
 
-### API Used
-
 ### Deploy
 
 - [Live Site](link)
@@ -26,9 +24,25 @@
 
 - Initial project
 - setup react & tooling
-- Scaffolding components
+- setup hooks useInterval
+- Scaffolding/Initial components
+  - Cell
+  - Display
+  - Stage
+  - StartButton
+  - Tetris
 - Stage and Tetrominos
+  - createState
+  - Tetrominos
+    - create shape of each element: '0(default), I, J, L, O, S, T, Z '
+    - randomTetromino function
 - Styling with styled-components
+  - StyledCell
+  - StyledTetris
+  - StyledStage
+  - StyledDisplay
+  - StyledStartButton
+  - import style to component
 - usePlayer
 - useStage
 - Stage update and player movement
@@ -41,8 +55,11 @@
 ### After this project
 
 I have improve my knowledge about
+
 I have understand about
-Next Steps:
+
+- styling without CSS file by styled-components
+  Next Steps:
 
 ### Directory Structure
 
