@@ -1,9 +1,9 @@
 import React from "react";
-
-const Stage = () => {
+import Cell from "../Cell";
+const Stage = ({ state }) => {
 	return (
 		<div>
-			<h2>Stage</h2>
+			<Cell />
 		</div>
 	);
 };
