@@ -1,19 +1,20 @@
 # Mini Project: Tetris Game
 
-## Date: 3 - Sep - 2020
+## Date: 3 - Sep - 2020 ~> 5 - Sep - 2020
 
 ### Functions
 
-- Tetris Game with React
+**Tetris Game with React**
 
 ### Screenshot
 
-<img src=""/>
+<img src="https://i.imgur.com/2WOulwg.png" alt="Tetris-game"/>
 
 ### Tech-Stack
 
 - React
-- Styled-components
+- styled-components
+- custom Hooks
 
 ### Deploy
 
@@ -124,7 +125,7 @@
 
 16. Remove `console.log()`
 17. Deploy
-18. Write `README.md`
+18. Write paper `README.md`
 
 ### Directory Structure
 
