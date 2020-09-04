@@ -17,8 +17,15 @@
 
 ### Deploy
 
-- [Live Site](link)
-- [Live Server](link)
+1. Deploy with **surge.sh**:
+
+- https://tetris.tinspham.info/
+- http://tetris-game-sff.surge.sh/
+
+2. Deploy with **Firebase**:
+
+- https://tetris-game.tinspham.info/
+- https://tetris-game-react-3a64e.web.app/
 
 ### Plan Of Action
 
