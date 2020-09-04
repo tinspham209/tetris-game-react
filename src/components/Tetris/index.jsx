@@ -8,6 +8,7 @@ import { StyledTetrisWrapper, StyledTetris } from "../styles/StyledTetris";
 import { usePlayer } from "../../hooks/usePlayer";
 import { useStage } from "../../hooks/useStage";
 import { useInterval } from "../../hooks/useInterval";
+import { useGameStatus } from "../../hooks/useGameStatus";
 
 import { createStage, checkCollision } from "../../gameHelper";
 
@@ -16,8 +17,14 @@ const Tetris = () => {
 	const [gameOver, setGameOver] = useState(false);
 
 	const [player, updatePlayerPos, resetPlayer, playerRotate] = usePlayer();
-	const [stage, setStage] = useStage(player, resetPlayer);
+	const [stage, setStage, rowsCleared] = useStage(player, resetPlayer);
+	const [score, setScore, rows, setRows, level, setLevel] = useGameStatus(
+		rowsCleared
+	);
 
+	console.log("level: ", level);
+	console.log("rows: ", rows);
+	console.log("score: ", score);
 	console.log("re-render");
 
 	const movePlayer = (dir) => {
@@ -33,10 +40,21 @@ const Tetris = () => {
 		setStage(createStage());
 		setDropTime(500);
 		resetPlayer();
+
+		setScore(0);
+		setRows(0);
+		setLevel(0);
+
 		setGameOver(false);
 	};
 
 	const drop = () => {
+		// Increase level when player has cleared 10 rows
+		if (rows > (level + 1) * 10) {
+			setLevel((prev) => prev + 1);
+			// Also increase speed;
+			setDropTime(500 / (level + 1) + 100);
+		}
 		if (!checkCollision(player, stage, { x: 0, y: 1 })) {
 			updatePlayerPos({ x: 0, y: 1, collided: false });
 		} else {
@@ -55,7 +73,7 @@ const Tetris = () => {
 			if (keyCode === 40) {
 				// Down
 				console.log("Interval on");
-				setDropTime(500);
+				setDropTime(500 / (level + 1) + 100);
 			}
 		}
 	};
@@ -103,9 +121,9 @@ const Tetris = () => {
 						<Display gameOver={gameOver} text="Game Over" />
 					) : (
 						<div>
-							<Display text="Score" />
-							<Display text="Rows" />
-							<Display text="Level" />
+							<Display text={`Score: ${score}`} />
+							<Display text={`Rows: ${rows}`} />
+							<Display text={`Level: ${level}`} />
 						</div>
 					)}
 					<StartButton callback={startGame} />
