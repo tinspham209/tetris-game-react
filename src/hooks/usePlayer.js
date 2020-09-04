@@ -13,6 +13,25 @@ export const usePlayer = () => {
 		collided: false,
 	});
 
+	const rotate = (matrix, dir) => {
+		// Make the rows to become cols
+		const rotatedTetromino = matrix.map((_, index) =>
+			matrix.map((col) => col[index])
+		);
+		// Reverse each row to get a rotated matrix
+		if (dir > 0) {
+			return rotatedTetromino.map((row) => row.reverse());
+		}
+		return rotatedTetromino.reverse();
+	};
+
+	const playerRotate = (stage, dir) => {
+		const clonedPlayer = JSON.parse(JSON.stringify(player));
+		clonedPlayer.tetromino = rotate(clonedPlayer.tetromino, dir);
+
+		setPlayer(clonedPlayer);
+	};
+
 	const updatePlayerPos = ({ x, y, collided }) => {
 		setPlayer((prev) => ({
 			...prev,
@@ -34,5 +53,5 @@ export const usePlayer = () => {
 			collided: false,
 		});
 	}, []);
-	return [player, updatePlayerPos, resetPlayer];
+	return [player, updatePlayerPos, resetPlayer, playerRotate];
 };
