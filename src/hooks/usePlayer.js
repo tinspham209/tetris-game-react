@@ -24,5 +24,15 @@ export const usePlayer = () => {
 		}));
 	};
 
-	return [player, updatePlayerPos];
+	const resetPlayer = useCallback(() => {
+		setPlayer({
+			pos: {
+				x: STAGE_WIDTH / 2 - 2,
+				y: 0,
+			},
+			tetromino: randomTetromino().shape,
+			collided: false,
+		});
+	}, []);
+	return [player, updatePlayerPos, resetPlayer];
 };
