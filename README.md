@@ -57,7 +57,7 @@
 9. **Stage update and player movement**
 
 - `movePlayer` function: move tetromino when user use `move` left/right function
-- in `Tetris` component:
+- in `src/components/Tetris`:
   - `startGame` function:
   - `drop` function:
   - `dropPlayer` function: move tetromino when user use `move` down function dropPlayer();
@@ -65,24 +65,23 @@
 - in `src/gameHelper`
   - updatePlayerPos: set new position of tetromino
   - resetPlayer: reset tetrominos when run `startGame` function
-- in `useStage`
+- in `src/hooks/useStage`
   - `updateStage`
     - First flush the stage
     - Then draw the tetromino
-- in `usePlayer`
+- in `src/hooks/usePlayer`
   - set tetromino is 0 when initial application
 
-10. **Collision detection**
+1.  **Collision detection**
 
 - `checkCollision` function:
-- 1. Check that we are on an actual Tetromino Cell
-- 2. Check that our move is inside the game areas height (y)
-- We shouldn't go through the bottom of the play area
-- 3. Check that our move is inside the game areas width (x)
-- 4. Check that the cell we are moving is isn't set to clear
-- Add checkCollision to Tetris component
+  - Check that we are on an actual Tetromino Cell
+  - Check that our move is inside the game areas height (y)
+  - Check that our move is inside the game areas width (x)
+  - Check that the cell we are moving is isn't set to clear
+  - Add checkCollision to `src/components/Tetris`
 
-11. **Player RotationG**
+1.  **Player RotationG**
 
 - `rotate` function:
   - Make the rows to become cols
@@ -97,11 +96,28 @@
 13. **drop with useInterval**
 
 - copy `useInterval.js` hook created by Dan Abramov to `src/hooks`
-- useInterval in Tetris component
+- useInterval in `src/components/Tetris`
 - Interval off when keyDown = DOWN
 - Interval off when keyUp
 
-14. **useGameStatus and React.memo**
+14. **useGameStatus**
+
+- in `src/hooks/useGameStatus.js`
+  - linePoints is [40, 100, 300, 1200]
+  - `calcScore`
+  - useEffect to tracking when rowsCleared
+- Import useGameStatus to `src/components/Tetris`
+- Increase level when player has cleared 10 rows
+- Also increase speed
+
+15. Optimize `src/components/Cell` re-render with (React.memo)
+
+- Cell is re-render 240times when Stage change
+- So im optimized with (React.memo)
+
+16. Remove `console.log()`
+17. Deploy
+18. Write `README.md`
 
 ### Directory Structure
 
@@ -112,6 +128,28 @@
 ├── README.md
 ├── public
 └── src
+    ├── assets
+        ├── fonts
+        └── img
+    ├── components
+        ├── styles
+            ├── StyledCell.js
+            ├── StyledDisplay.js
+            ├── StyledStage.js
+            ├── StyledStartButton.js
+            └── StyledTetris.js
+        ├── Display
+        ├── Stage
+        ├── StartButton
+        ├── Cell
+        └── Tetris
+    ├── hooks
+        ├── useGameStatus.js
+        ├── useInterval.js
+        ├── usePlayer.js
+        └── useStage.js
+    ├── gameHelper.js
+    ├── tetrominos.js
     ├── App.js
     ├── App.css
     ├── index.css
@@ -122,18 +160,18 @@
 
 Use the cmd line to clone repo to your computer
 
-```js
+```
 git clone https://github.com/tinspham209/tetris-game-react
 ```
 
 Use the cmd line to install dependencies.
 
-```js
+```
 npm install
 ```
 
 Run in cmd for start the dependencies server
 
-```js
+```
 npm start
 ```
